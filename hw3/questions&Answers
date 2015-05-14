@@ -1,0 +1,103 @@
+Answer the following questions:
+
+1)  Identify which of the following examples of inheritance are correct by determining whether the "is-a" relationship of each is true of false:
+
+a)  Class Dog inherits from class Animal : true
+
+b)  Class Planet inherits from class Earth : false
+
+c)  Class Customer inherits from class Bank : false
+Assumption: The bank class is used to create objects of Bank. 
+Example: Bank WellsFargo= new Bank();
+         Bank Chase= new Bank();
+
+
+ 
+
+2)  Explain each of the following in words:
+
+a)  Single-level, multilevel, and hierarchical inheritance
+    
+    1.Single Level Inheritance: When a class extends another class only[just one] then we  call it a single inheritance
+
+    2.Multilevel Inheritance: Multilevel inheritance refers to a mechanism in OO technology where one can inherit from a derived class, thereby making this derived class the base class for the new class. 
+
+    3.Hierarchical Inheritance: In such kind of inheritance one class is inherited by many sub classes.
+
+b)  "super" 
+    used to refer immediate parent class object.
+    If your method overrides one of its superclass's methods, you can invoke the overridden method through the use of the keyword super.
+
+
+c)  Upcasting
+    Up-casting is casting to a supertype
+    Upcasting is done automatically.
+    Does not require explicit Upcasting.
+
+
+d)  Overridden method
+    Declaring a method in subclass which is already present in parent class is known as method overriding.
+
+e)  "final" keyword
+    Once a final variable has been assigned, it always contains the same value
+    Similar to const keyword in C++.
+
+f)  Abstract class
+    An abstract class is a class that is declared abstract —it may or may not include abstract methods. 
+    Abstract classes cannot be instantiated, but they can be subclassed. 
+    When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class.
+ 
+
+3)  
+
+Consider the following program comprised of classes A, B, and C:
+
+ public class A {
+
+  public void method(){
+
+  }
+
+}
+
+ public class B extends A {
+
+  public void methodB() {
+
+  }
+
+} 
+
+public class C {
+
+  public void methodC(A i) {
+
+     i.method();
+
+     ((B) i).methodB();
+
+  } 
+
+  public static void main(String[] args) {
+
+     A obj1 = new A();
+
+     C obj2 = new C();
+
+     obj2.methodC(obj1);
+
+  }
+
+} 
+
+Answer the following questions:
+
+Will this program compile correctly? If not, explain why.
+Compilation is not possible.
+Because type cast to B is not possible automatically.
+Will this program run correctly? If not, explain why.
+If the program cannot be compiled and its respective class file is not generated the program cannot be executed.
+Will this program compile and run correctly if obj1 references an instance of class B instead of class A?
+Yes the program will execute if obj1 reference an instance of class B .
+In this case upcasting is not required.
+ 

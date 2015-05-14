@@ -1,0 +1,82 @@
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+
+public class ChangeImageColors {
+	
+	public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+	
+  public static void main(String[] args) {
+    DrawingKit dk = new DrawingKit("Change colors", 1280, 720);
+    BufferedImage picture = dk.loadPicture("/Volumes/MAC/OOMD Submissions/hw2/hw2/src/img.jpeg");
+    // draw the original picture 
+    dk.drawPicture(picture, 0, 50);
+   
+    BufferedImage picture1 = (BufferedImage) picture.clone();
+    // modify the pixels in the picture 
+    int x,y;
+    for (x = 0; x < picture.getWidth(); x++) {
+      for (y = 0; y < picture.getHeight(); y++) {
+	    // get the red, green and blue components of pixel at (x, y)  
+	    int colorValue = picture.getRGB(x, y);
+	    Color pixelColor = new Color(colorValue);
+	    int red =  pixelColor.getRed() ;
+	    int green =  pixelColor.getGreen() ;
+	    int blue =  pixelColor.getBlue();
+	    
+	    //Inverting the colors of the image
+	    red = 255 - red;
+	    green = 255 - green;
+	    blue = 255 - blue;
+	   
+	    // update the pixel color in picture 
+	    Color newPixelColor = new Color(red, green, blue);
+	    int newRgbvalue = newPixelColor.getRGB();
+	    picture.setRGB(x, y, newRgbvalue);					 
+	  } // end inner for loop
+    } // end outer for loop
+
+    // draw the modified picture 
+    dk.drawPicture(picture, 600, 50);
+    
+    
+    
+    //the modification required.
+    /*The third image (rightmost) will be as follows:  For red, 
+     * green, and blue intensities less than or equal to 50, you will half the intensity values. 
+     * For red, green, and blue intensities greater than 200, you will multiply the intensity value by 1.05 (you will need to convert the result to an integer).  Note that
+     * you should threshold the maximum intensity such that the value does not exceed 255.Notes:
+     * 
+     * @author: Abhishek
+     * 
+     * 
+     */
+    
+    for (x = 0; x < picture.getWidth(); x++) {
+      for (y = 0; y < picture.getHeight(); y++) {
+	    // get the red, green and blue components of pixel at (x, y)  
+	    int colorValue = picture.getRGB(x, y);
+	    Color pixelColor = new Color(colorValue);
+	    int red =  pixelColor.getRed() ;
+	    int green =  pixelColor.getGreen() ;
+	    int blue =  pixelColor.getBlue();
+	    
+	    //Inverting the colors of the image
+	    red = 255 - red;
+	    green = 255 - green;
+	    blue = 255 - blue;
+	   
+	    // update the pixel color in picture 
+	    Color newPixelColor = new Color(red, green, blue);
+	    int newRgbvalue = newPixelColor.getRGB();
+	    picture.setRGB(x, y, newRgbvalue);					 
+	  } // end inner for loop
+    } // end outer for loop
+
+    // draw the modified picture 
+    dk.drawPicture(picture, 1000, 50);
+    
+  }
+}

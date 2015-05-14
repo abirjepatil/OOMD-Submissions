@@ -1,0 +1,8 @@
+Total Number of objects Created are : 5
+******************************************
+Rob	1	imgRob.jpeg
+Phil	2	imgPhil.jpeg
+Lisa	3	imgLisa.jpeg
+Kevin	4	imgKevin.jpeg
+Ed	5	imgEd.jpeg
+******************************************
