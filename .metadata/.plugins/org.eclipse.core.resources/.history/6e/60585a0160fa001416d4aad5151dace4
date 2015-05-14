@@ -1,0 +1,25 @@
+package com.scu.hw6;
+
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+public class Hw6 {
+
+	
+public static void main(String[] args)
+{
+	JFrame myFrame = new JFrame("This is my frame");
+	JButton btnAddFlight = new JButton("Add Flight");
+
+	JButton btnAddFlight1 = new JButton("Add Flight");
+	btnAddFlight.setPreferredSize(new Dimension(40, 40));
+//	myFrame.setPreSize(300,400);
+	myFrame.add(btnAddFlight);
+myFrame.add(btnAddFlight1);
+	myFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	myFrame.setVisible(true);	
+}
+}

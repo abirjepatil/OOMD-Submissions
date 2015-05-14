@@ -1,0 +1,54 @@
+package com.scu.hw6;
+
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
+public class Hw6 {
+	
+	public void actionPerformed(ActionEvent evt) {
+	    Object src = evt.getSource();
+	    if (src == btnAddFlight) {
+	     // ... perform action for button 1
+	    } else if (src == button2) {
+	      //... perform action for button 2
+	    }
+	  }
+	
+public static void main(String[] args)
+{
+	JFrame myFrame = new JFrame("This is my frame");
+	JPanel myPanel= new JPanel();
+	JLabel label= new JLabel();
+	JLabel label2=new JLabel();
+	//label.setText("Image will be here");
+	
+	ImageIcon imgThisImg = new ImageIcon("/Users/abhishekbirjepatil/Desktop/image.jpg");
+
+	label.setIcon(imgThisImg);
+	
+	JButton btnAddFlight = new JButton("Add Flight");
+	JButton btnAddFlight1 = new JButton("Addasd Flight");
+
+	myPanel.add(btnAddFlight);
+	myPanel.add(btnAddFlight1);
+	
+	myPanel.add(label);
+	myFrame.add(myPanel);
+	
+	btnAddFlight.addActionListener(this);
+    btnAddFlight1.addActionListener(this);
+	
+	//myFrame.add(btnAddFlight1);
+	myFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	myFrame.setVisible(true);	
+}
+}

@@ -1,0 +1,36 @@
+package com.scu.hw6;
+
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
+public class Hw6 {
+	
+	public void actionPerformed(ActionEvent evt) {
+	    Object src = evt.getSource();
+	    if (src == btnAddFlight) {
+	     // ... perform action for button 1
+	    } else if (src == button2) {
+	      //... perform action for button 2
+	    }
+	  }
+	
+	
+	public void Draw()
+	{
+		
+		
+		
+	}
+public static void main(String[] args)
+{
+}
+}

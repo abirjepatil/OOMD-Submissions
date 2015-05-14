@@ -1,0 +1,309 @@
+
+
+
+
+
+
+
+
+
+        
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Santa Clara University Login</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+		<link rel="stylesheet" href="/nidp/images/rd-base.css" />
+		<link rel="stylesheet" href="/nidp/images/rd-skeleton.css" />
+		<link rel="stylesheet" href="/nidp/images/rd-layout.css" />
+		<link rel="stylesheet" href="/nidp/images/rd-scu.css" />
+		
+        <script>
+	       var g_curCard = null; 		// initial displayed card
+		 var g_cardContainer = null; 	// div that holds all the authentication cards
+		 var g_curSubtab = null; 	// subtab currently displayed
+		 var g_curTab = null; 		// tab currently displayed
+
+	    	 var menuItem = 0;
+             function showHide(i)
+             {
+                 document.getElementById('menu1').style.display='none';
+                 document.getElementById('menu2').style.display='none';
+                 document.getElementById('submenu1').style.display='none';
+                 document.getElementById('submenu2').style.display='none';
+                 document.getElementById('menu' + i).style.display='block';
+                 document.getElementById('submenu' + i).style.display='block';
+		     if (i == 1)
+		         switchContentPage("/nidp/jsp/content.jsp?sid=0");
+		     else 
+		         switchContentPage("/nidp/jsp/IdentityEditor.jsp?sid=0");
+             }
+
+		 function switchContentPage(newSrc)
+		 {
+	  	     parent.document.getElementById("content").src = newSrc;
+		 }  
+
+		 function onloadhandler()
+		 {
+		     g_cardContainer = document.getElementById("cardcontainer");
+		     g_curSubtab     = document.getElementById("loginsubtab");
+		     g_curTab        = document.getElementById("authtab");
+		     g_curCard       = document.getElementById("selectedCard0");
+		 }	
+
+	 	 function showhideTab(divid)
+		 {
+		     var element1 = document.getElementById(divid);	
+			
+		     if(element1.style.display == "none")
+		     {
+		         element1.style.display = "block";
+			   g_curTab.style.display = "none";
+					
+		         g_curTab = element1;
+		     }
+		 }
+
+		 function subtabchange(divid)
+	 	 {
+		     var element1 = document.getElementById(divid);
+		     var element2 = g_curSubtab;
+		     element1.className = "selx";
+		     if (element1.id != element2.id)
+		     {
+		         element2.className = "unselx";
+		     }
+		     g_curSubtab = element1;	
+		 }
+			
+		 function showHelp()
+	 	 {
+		     var helpURL = "login.html";
+                 if (g_curSubtab.id == "fedsubtab")
+		         helpURL = "/nidp/html/help/en/federations.html";
+
+                 else if (g_curSubtab.id == "myprofile")
+			   helpURL = "/nidp/html/help/en/myprofile.html";
+
+                 else if (g_curSubtab.id == "sharing")
+ 			   helpURL = "/nidp/html/help/en/sharing.html";
+
+                 else if (g_curSubtab.id == "loginsubtab")
+			   helpURL = "/nidp/html/help/en/userlogin.html";
+
+                 else if (g_curSubtab.id == "newcardsubtab")
+			   helpURL = "/nidp/html/help/en/newcard.html";
+
+               else if (g_curSubtab.id == "logTicketsubtab")
+    			   helpURL = "/nidp/html/help/en/logticket.html";
+
+    		     var w;
+    		     w = window.open(helpURL, "nidsPopupHelp", "toolbar=no,location=no,directories=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500");
+    		     if (w != null)
+    		     {
+        		  w.focus();
+    		     }
+		 }
+        </script>
+        
+        <!-- the following js and css are used for the IT status RSS feed display -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
+	
+	    function initialize() {
+	      var feedControl = new google.feeds.FeedControl();
+	        feedControl.setNumEntries(10);
+	        feedControl.addFeed("https://it.scu.edu/tsp_all.xml", "");
+	        feedControl.draw(document.getElementById("itfeed"));
+	    }
+	    
+	    
+	    google.load("feeds", "1");
+
+		// Our callback function, for when a feed is loaded.
+		function feedLoaded(result) {
+		  if (!result.error) {
+		    var container = document.getElementById("itfeed");
+		    container.innerHTML = '';
+		    // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+		    for (var i = 0; i < result.feed.entries.length; i++) {
+		      var entry = result.feed.entries[i];
+	  		  var itemid = 'item'+i;
+		      var divitem = document.createElement("div");
+		      divitem.setAttribute('class','divitem');
+		      var divlink = document.createElement("div");
+		      var itemlink = '<a href="javascript:void(0)" onclick="toggle(\'' + itemid + '\')">' + entry.title + '</a>';
+		      divlink.innerHTML = itemlink;
+		      var entrydate=new Date(entry.publishedDate);
+		      var entrydatestr=(entrydate.getMonth()+1)+"/"+entrydate.getDate()+"/"+entrydate.getFullYear();
+		      var divcat = document.createElement("div");
+		      var divcatclass = 'itemcat ' + entry.categories[0];
+		      divcat.setAttribute('class',divcatclass);
+		      var catpub = entry.categories[0] + '<br/>' + entrydatestr;
+                      var catpub = entrydatestr;
+		      divcat.innerHTML = catpub;
+		      var divcontent = document.createElement("div");
+		      divcontent.setAttribute('class','itemcontent');
+		      divcontent.setAttribute('id',itemid);
+		      divcontent.innerHTML = entry.content;
+		      divitem.appendChild(divcat);
+		      divitem.appendChild(divlink);
+		      divitem.appendChild(divcontent);
+		      container.appendChild(divitem);
+		    }
+		  }
+		}
+		
+		function OnLoad() {
+		  var feed = new google.feeds.Feed("https://it.scu.edu/tsp_all.xml");
+		  feed.setNumEntries(15)
+		  // Calling load sends the request off.  It requires a callback function.
+		  feed.load(feedLoaded);
+		}
+		
+		function toggle(target) {
+                targetElement = document.getElementById(target);
+                targetElementPM = document.getElementById(target+'_pm');
+                if ( targetElement.style.display == 'block' ) {
+                    newval = 'none';
+               	} else {
+                    newval = 'block';
+            	}
+                targetElement.style.display = newval;			
+            }
+
+		google.setOnLoadCallback(OnLoad);
+		//google.setOnLoadCallback(initialize);
+		
+	</script>
+	    
+	    <style type="text/css">
+	    #itfeed {
+			height:350px;
+			overflow:auto;
+	    	}
+	    #itfeed .gf-snippet, #itfeed .gfc-resultsHeader, #itfeed .gf-result .gf-author { 
+        display : none;
+      	} 
+
+	    .divitem {
+	    	margin-top:5px;
+			margin-right:5px;
+	    	padding-top:5px;
+	    	border-top:1px solid #ccc;
+	    	min-height:50px;
+	    	}
+	    .divitem a {
+	    	text-decoration:none;
+	    	color:#000;
+	    	}
+	    	
+	    .divitem.linkformat a {
+	    	}
+	    	
+	    .divitem a:hover {
+	    	text-decoration:underline;
+	    	}
+	    .itemcat {
+	    	padding:2px;
+	    	width:100px;
+	    	height:45px;
+	    	font-size:smaller;
+	    	background:#eee;
+	    	text-align:center;
+	    	float:right;
+	    	}
+	    .itemcat.Critical {
+	    	background:#666;
+	    	color:#fff;
+	    	font-weight:bold;
+	    	}
+	    .itemcat.Severe {
+	    	background:#999;
+	    	color:#fff;
+	    	font-weight:bold;
+	    	}
+	    .itemcat.Informational {
+	    	background:#ccc;
+	    	color:#000;
+	    	}	
+	    .itemcontent {
+	    	margin-top:10px;
+	    	display:none;
+	    	font-size:smaller;
+	    	}
+	    .itemcontent a {
+	    	font-size:100% !important;
+	    	color:#93191b;
+	    	}
+	    </style>
+    </head>
+
+    <body onload="onloadhandler()">
+		<div class="m-header"><a href="http://m.scu.edu/"><img width="108" height="40" class="sculogo" alt="" src="/nidp/images/scu-home.png" /></a><h1><a href="/index.cfm" rel="external">Login</a></h1></div>
+		<div class="container">
+			<div class="header"><a href="http://www.scu.edu"><img src="/nidp/images/scu-logo.png" alt="Santa Clara University" /></a></div>
+			<div class="ten columns">
+
+				<h2>SCU Login</h2>
+
+
+
+
+
+					
+
+    <!-- <div id="mcontent"> -->
+
+ 	  <!-- <div id="statustab" style="display: block;">
+            <table class="NLtab" width="99%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+			  <td class="tab1s"><span class="tab1s">Sign in with your SCU ID</span></td>
+			  <td width="100%">&nbsp;</td>
+		    </tr>
+		    <tr height="5" class="subtab"> -->
+
+                    <!-- <td class="tab2u" colspan="11" height="5" style="background-color:  #841618"><img src="/nidp/images/1px_spacer.gif" alt="" height="5" width="20" border="0"><span id="loginsubtab" class="selx"><a href="#">User Login</a></span> -->
+
+			     <!-- &nbsp;|&nbsp;<span id="fedsubtab" class="unselx"><a href="/nidp/saml2/sso?option=credential&Cancel.x=true&sid=0" >Cancel</a></span> -->
+
+			  <!-- </td>
+                </tr>
+            </table>
+        </div> -->
+
+<!--     </div> -->
+
+				<iframe scrolling="no" id="loginsubtab" src="/nidp/jsp/content.jsp?sid=0&id=289&sid=0&amp;SAMLRequest=nZLNboMwEITvfQrkO2ASIMECpDRR1UhpixLaQy%2BVMZvGEtjUNv15%2BxrSSpGi5tCj17M7n2Y31bRtOrLozUFs4a0HbZzPthGajB8Z6pUgkmquiaAtaGIY2S3uNmTiYdIpaSSTDXLWqwxVcRxHVY0BwmQfhdMZRHGQwIzG8wDDPJnOWJXQaooT5DyB0lyKDNkxtlvrHtZCGyqMLeEgcnHkBmEZzAnGJIyekVP8eF1zUXPxehmsOoo0uS3Lwi0ediVyFlqDMtZ0KYXuW1A7UO%2BcweN2k6GDMZ0mvs9oy4X0uGVRPTO9Ao%2FJ1h%2ByeGHHPpSnw5OM0OokrMtI9Nce5YPZZa9J6p945FfpcUv3dup6VciGs6%2F%2FbOlGqpaav9WBF4wVXrv7UUp6oTtgfM%2Bhtgk2jfxYKqAGMmSZhyj8czKL659fVf4N" frameborder="0" height="375" width="100%"></iframe>
+			</div>
+			<div class="six columns">
+				<h5><a href='https://it.scu.edu/tsp'>Technology Status Updates</a></h5><div id='itfeed'></div><div class='divitem'><a href='http://www.google.com/appsstatus#hl=en'>Google Apps Status &raquo;</a></div>
+
+
+
+			</div>
+			<div class="sixteen columns footer">
+				<p><a href='https://sso.scu.edu/gam/passwords.html' target='_top'>Manage your passwords</a> - Change your SCU Network or Google Apps Mobile password, or enter SCU Network ID self-service forgotten password passphrases.</p>
+
+		<p><a href="https://sso.scu.edu/pwm/public/ForgottenPassword?logoutURL=#" target="_top">Forgot your SCU Network ID password?</a> - You can reset it once you've entered self-sevice password recovery passphrases.</p>
+    	
+<p>For technical support, please contact the <a href="http://it.scu.edu/Comments.shtml">IT Service Center</a> at 408-554-5700.</p>
+<p>&copy; Santa Clara University [sso1]</p>
+			</div>
+		</div>
+    </body>
+</html>
+
+
+ 
